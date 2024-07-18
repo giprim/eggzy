@@ -51,7 +51,7 @@ function RootLayoutNav() {
 
   return (
     <TamaguiProvider config={config} >
-      <Theme name={colorScheme}>
+      <Theme name={colorScheme} >
         <SafeAreaProvider>
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />

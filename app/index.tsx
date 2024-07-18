@@ -8,16 +8,16 @@ import {
   YStack,
   Input,
   Label,
+  Anchor,
   H4,
   useTheme,
 } from "tamagui";
 
 const Landing = () => {
   const insets = useSafeAreaInsets();
-  const theme = useTheme();
   const handleLogin = () => {
-    // router.push("/(tabs)");
-    router.push("/(signup)");
+    router.push("/(tabs)");
+    // router.push("/(signup)");
   };
 
   const keyboardVerticalOffset = Platform.OS === "ios" ? 4 : 0;
@@ -30,6 +30,7 @@ const Landing = () => {
     >
       <View
         onPress={Keyboard.dismiss}
+        bg={'$background'}
         accessible={false}
         flex={1}
         justifyContent="center"
@@ -55,12 +56,12 @@ const Landing = () => {
               Login
             </Button>
           </YStack>
-          <Link
-            href="signup"
+          <Anchor
+            href="/signup"
             style={{ paddingTop: 16 }}
           >
             Don't have an account?
-          </Link>
+          </Anchor>
         </View>
       </View>
     </KeyboardAvoidingView>
