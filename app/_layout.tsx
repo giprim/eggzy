@@ -1,17 +1,13 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import { SplashScreen, Stack } from "expo-router";
 import { useColorScheme } from "react-native";
-import { TamaguiProvider, Theme } from "tamagui";
+import { TamaguiProvider, Theme, useTheme } from "tamagui";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../tamagui-web.css";
 
 import { config } from "../tamagui.config";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import ROUTES from "../constants/routes";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -47,6 +43,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const theme = useTheme()
   const colorScheme = useColorScheme();
 
   return (
@@ -54,13 +51,21 @@ function RootLayoutNav() {
       <Theme name={colorScheme} >
         <SafeAreaProvider>
           <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name={ROUTES.index.name} options={{ headerShown: false }} />
             <Stack.Screen
-              name="signup/index"
-              options={{ headerTitle: "Sign up" }}
+              name={ROUTES.signUp.name}
+            // options={{ headerShown: false }}
             />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+            <Stack.Screen name={ROUTES.dashboard.name} options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{
+              presentation: "modal",
+
+              // headerTintColor: theme.color.get(),
+              title: 'Place Orders',
+              headerStyle: {
+                // backgroundColor: theme.background.get(),
+              }
+            }} />
           </Stack>
         </SafeAreaProvider>
       </Theme>
