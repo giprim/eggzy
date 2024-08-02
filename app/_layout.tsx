@@ -8,6 +8,7 @@ import { config } from "../tamagui.config";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import ROUTES from "../constants/routes";
+import ContextProvider from "../context";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -47,24 +48,26 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <TamaguiProvider config={config} >
-      <Theme name={colorScheme} >
-        <SafeAreaProvider>
-          <Stack>
-            <Stack.Screen name={ROUTES.index.name} options={{ headerShown: false }} />
-            <Stack.Screen
-              name={ROUTES.signUp.name}
-            // options={{ headerShown: false }}
-            />
-            <Stack.Screen name={ROUTES.dashboard.name} options={{ headerShown: false }} />
-            <Stack.Screen name={'placeOrder'} options={{
-              presentation: "modal",
-              headerShown: false,
-              // title: 'Place Orders',
-            }} />
-          </Stack>
-        </SafeAreaProvider>
-      </Theme>
-    </TamaguiProvider>
+    <ContextProvider>
+      <TamaguiProvider config={config} >
+        <Theme name={colorScheme} >
+          <SafeAreaProvider>
+            <Stack>
+              <Stack.Screen name={ROUTES.index.name} options={{ headerShown: false }} />
+              <Stack.Screen
+                name={ROUTES.signUp.name}
+              // options={{ headerShown: false }}
+              />
+              <Stack.Screen name={ROUTES.dashboard.name} options={{ headerShown: false }} />
+              <Stack.Screen name={'placeOrder'} options={{
+                presentation: "modal",
+                headerShown: false,
+                // title: 'Place Orders',
+              }} />
+            </Stack>
+          </SafeAreaProvider>
+        </Theme>
+      </TamaguiProvider>
+    </ContextProvider>
   );
 }

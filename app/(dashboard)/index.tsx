@@ -11,30 +11,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BellDot, X } from 'lucide-react-native'
 import CustomAlertCard from '../../components/customAlertCard';
 import ROUTES from '../../constants/routes';
+import { order, useAppContext } from '../../context';
+import { formatCurrency } from '../../utils/formatCurrency';
 
-type order = {
-  date: string;
-  cost: number;
-  quantity: number;
-  measurement: "crate" | "piece";
-};
-
-const DATA: order[] = [
-  {
-    date: "2024-03-15",
-    cost: 30000,
-    quantity: 12,
-    measurement: "crate",
-  },
-  {
-    date: "2024-05-28",
-    cost: 25000,
-    quantity: 130,
-    measurement: "piece",
-  },
-];
 
 const DashboardHomeScreen = () => {
+  const { orders } = useAppContext()
   const insets = useSafeAreaInsets();
   const theme = useTheme()
   const [showAlert, setShowAlert] = useState(true)
@@ -88,7 +70,7 @@ const DashboardHomeScreen = () => {
             History
           </Text>
           <FlatList
-            data={DATA}
+            data={orders ?? []}
             style={styles.flatList}
             renderItem={({ item }) => <Card {...item} />}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
@@ -106,7 +88,7 @@ export default DashboardHomeScreen;
 
 const styles = StyleSheet.create({
   flatList: {
-    height: 200,
+    height: 'auto',
     paddingTop: 10,
   },
 });
@@ -140,18 +122,20 @@ const Card = (props: order) => {
             <View style={{ display: "flex", flexDirection: "row" }}>
               <Text fontWeight={600} pb={2}>{props.quantity}</Text>
               <Text fontWeight={600} pb={2}>
-                {props.measurement === "crate" ? "c" : "p"}
+                {/* {props.measurement === "crate" ? "c" : "p"} */}
+                c
               </Text>
             </View>
           </View>
           <View display='flex' >
             <Text fontWeight={600} pb={2}>
-              {new Date(props.date).toDateString()}
+              {new Date(props.createdAt).toDateString()}
             </Text>
             <Text color={'$red9Dark'}>
-              N{props.cost}
+              {formatCurrency(props.totalCost)}
             </Text>
-            <Text >{props.measurement}</Text>
+            {/* <Text >{props.measurement}</Text> */}
+            <Text >crate</Text>
           </View>
         </View>
       </View>

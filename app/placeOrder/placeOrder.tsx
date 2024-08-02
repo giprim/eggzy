@@ -1,45 +1,28 @@
 import { Link } from "expo-router";
-import { useMemo, useState, } from "react";
-import { Button, H2, Input, Text, View, XStack, YStack, Label, Separator, useTheme } from "tamagui";
+import { Button, H2, Input, Text, View, XStack, YStack, Label, Separator } from "tamagui";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { Switch } from "react-native";
 import ROUTES from "../../constants/routes";
+import { usePlaceOrder } from "./usePlaceOrder";
 
 export default function ModalScreen() {
-  const theme = useTheme()
-  const [pricePerCrate, setPricePerCrate] = useState(5000)
-  const [availableCrates, setAvailableCrates] = useState(28)
-  const [quantity, setQuantity] = useState(1)
-
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-  const handleChange = (input: string) => {
-    const value = Number(input)
-    setQuantity(value)
-  }
-
-  const validate = () => {
-    if (quantity >= availableCrates) {
-      setQuantity(availableCrates)
-      return
-    }
-    if (quantity <= 1) {
-      setQuantity(1)
-      return
-    }
-  }
-
-
-  const cratesAndPrice = useMemo(() => quantity * pricePerCrate, [quantity])
-  const delivery = useMemo(() => {
-    const result = cratesAndPrice * 0.1
-    if (result <= 2000) return 2000
-    return result
-  }, [cratesAndPrice])
-
-  const totalAmount = isEnabled ? delivery + cratesAndPrice : cratesAndPrice
-
+  const {
+    delivery,
+    availableCrates,
+    handleChange,
+    handleSubmit,
+    pricePerCrate,
+    validate,
+    quantity,
+    isEnabled,
+    isValid,
+    cratesAndPrice,
+    toggleSwitch,
+    totalAmount,
+    theme,
+    address,
+    typeOfAddress
+  } = usePlaceOrder()
 
   return <View backgroundColor={'$background'} display="flex" flexDirection="column" h={'100%'} >
 
@@ -75,7 +58,6 @@ export default function ModalScreen() {
         <Label htmlFor={'delivery'}>Delivery</Label>
       </XStack>
 
-
       <Separator minHeight={20} />
       <XStack pb={1} justifyContent="space-between">
         <Text >{quantity} crate </Text>
@@ -91,22 +73,21 @@ export default function ModalScreen() {
       </XStack>
       <Separator minHeight={2} />
 
-      {isEnabled ? <View py={6}>
-        <Text fontWeight={700} pb={2}>My address:</Text>
-        <Text fontWeight={400} fontStyle="italic" >3rd floor Opposite my neighbor's house, close to the road</Text>
-        <Link href={ROUTES.settings.path} asChild>
-          <Text
-            color={'$red10Light'}
-            textDecorationLine="underline" py={16}>Change address</Text>
-        </Link>
+      <View py={6}>
+        <Text fontWeight={700} pb={2}>{address[typeOfAddress].title}</Text>
+        <Text fontWeight={400} fontStyle="italic" >{address[typeOfAddress].address}</Text>
+        {isEnabled &&
+          <Link href={ROUTES.settings.path} asChild>
+            <Text
+              color={'$red10Light'}
+              textDecorationLine="underline" py={16}>Change address</Text>
+          </Link>
+        }
       </View>
-        : <View py={6}>
-          <Text fontWeight={700} pb={2}>Pickup location:</Text>
-          <Text fontWeight={400} fontStyle="italic" >10th block close chief's house</Text>
-        </View>
-      }
 
-      <Button bg={'$color7'} color={'$white1'}>Place order</Button>
+      <Button bg={'$color7'} disabled={!isValid}
+        disabledStyle={{ backgroundColor: theme.gray10Dark.val }}
+        color={'$white1'} onPress={handleSubmit}>Place order</Button>
     </YStack>
   </View>
 }

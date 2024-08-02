@@ -8,7 +8,6 @@ const PlaceOrderLayout = () => {
       options={{
         headerShown: false,
         title: 'Place Orders',
-        presentation: 'modal'
       }}
     />
   </Stack>
