@@ -57,14 +57,10 @@ function RootLayoutNav() {
             // options={{ headerShown: false }}
             />
             <Stack.Screen name={ROUTES.dashboard.name} options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{
+            <Stack.Screen name={'placeOrder'} options={{
               presentation: "modal",
-
-              // headerTintColor: theme.color.get(),
-              title: 'Place Orders',
-              headerStyle: {
-                // backgroundColor: theme.background.get(),
-              }
+              headerShown: false,
+              // title: 'Place Orders',
             }} />
           </Stack>
         </SafeAreaProvider>

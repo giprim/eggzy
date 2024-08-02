@@ -1,19 +1,19 @@
 import { Tabs } from "expo-router";
 import { useTheme, } from "tamagui";
 import { Home, MessageCircle, Settings } from 'lucide-react-native';
+import ROUTES from "../../constants/routes";
 
 
 export default function TabLayout() {
   const theme = useTheme()
   return (
-
     <Tabs
       screenOptions={{
         headerTransparent: true,
         headerTintColor: theme.color.val,
         tabBarActiveTintColor: theme.color.val,
-        tabBarInactiveTintColor: theme.outlineColor.val,
-        tabBarStyle: { backgroundColor: theme.color1.val }
+        tabBarInactiveTintColor: theme.color7.val,
+        tabBarStyle: { backgroundColor: theme.background.val }
       }}
     >
       <Tabs.Screen
@@ -25,20 +25,19 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="chat"
+        name={ROUTES.messages.name}
         options={{
-          title: "Messages",
+          title: ROUTES.messages.name,
           tabBarIcon: ({ color }) => <MessageCircle color={color} />,
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name={ROUTES.settings.name}
         options={{
-          title: "Settings",
+          title: ROUTES.settings.name,
           tabBarIcon: ({ color }) => <Settings color={color} />,
         }}
       />
     </Tabs>
-
   );
 }

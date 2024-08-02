@@ -1,6 +1,6 @@
 import { Avatar, Button, Text, useTheme, View } from 'tamagui'
 import { Link } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   FlatList,
@@ -8,7 +8,9 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BellDot } from 'lucide-react-native'
+import { BellDot, X } from 'lucide-react-native'
+import CustomAlertCard from '../../components/customAlertCard';
+import ROUTES from '../../constants/routes';
 
 type order = {
   date: string;
@@ -35,6 +37,7 @@ const DATA: order[] = [
 const DashboardHomeScreen = () => {
   const insets = useSafeAreaInsets();
   const theme = useTheme()
+  const [showAlert, setShowAlert] = useState(true)
 
   return (
     <>
@@ -65,11 +68,20 @@ const DashboardHomeScreen = () => {
 
           <View display='flex' gap={20} flexDirection='row' alignItems='center'>
             <BellDot color={theme.red10Dark.val} />
-            <Link href="/modal" asChild>
+            <Link href={ROUTES.placeOrder.path} asChild>
               <Button>Order</Button>
             </Link>
           </View>
         </View>
+
+        {
+          showAlert && <CustomAlertCard
+            title='Update'
+            closeAction={() => setShowAlert(false)}
+            message="placeat ullam similique eligendi deserunt soluta omnis sint modi est consectetur quibusdam quasi corporis, eius numquam eum? Ipsam, veniam perferendis."
+          />
+        }
+
         {/* History */}
         <View mt={24} py={16} borderRadius={8}>
           <Text pb='$3' >
@@ -88,6 +100,9 @@ const DashboardHomeScreen = () => {
 };
 
 export default DashboardHomeScreen;
+
+
+
 
 const styles = StyleSheet.create({
   flatList: {
