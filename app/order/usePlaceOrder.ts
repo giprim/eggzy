@@ -4,6 +4,8 @@ import React, { useMemo, useState } from 'react'
 import { useTheme } from 'tamagui'
 import ROUTES from '../../constants/routes'
 import { useAppContext } from '../../context'
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 export type addressType = 'pickup' | 'delivery'
 export const address: Record<addressType, { title: string, address: string }> = {
@@ -58,11 +60,11 @@ export const usePlaceOrder = () => {
       pickAddress: !isEnabled ? address[typeOfAddress].address : '',
       quantity: quantity,
       totalCost: totalAmount,
-      createdAt: new Date().toUTCString()
+      createdAt: new Date().toUTCString(),
+      id: uuidv4()
     })
 
     setAvailableCrates(prev => prev - quantity)
-
     router.navigate(ROUTES.dashboard.name)
   }
 

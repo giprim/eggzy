@@ -59,7 +59,7 @@ function RootLayoutNav() {
               // options={{ headerShown: false }}
               />
               <Stack.Screen name={ROUTES.dashboard.name} options={{ headerShown: false }} />
-              <Stack.Screen name={'placeOrder'} options={{
+              <Stack.Screen name={ROUTES.order.name} options={{
                 presentation: "modal",
                 headerShown: false,
                 // title: 'Place Orders',

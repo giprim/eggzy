@@ -5,14 +5,13 @@ import {
   StyleSheet,
   FlatList,
   StatusBar,
-  TouchableHighlight,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BellDot, X } from 'lucide-react-native'
+import { BellDot } from 'lucide-react-native'
 import CustomAlertCard from '../../components/customAlertCard';
 import ROUTES from '../../constants/routes';
-import { order, useAppContext } from '../../context';
-import { formatCurrency } from '../../utils/formatCurrency';
+import { useAppContext } from '../../context';
+import HistoryItem from '../../components/historyItem';
 
 
 const DashboardHomeScreen = () => {
@@ -25,6 +24,7 @@ const DashboardHomeScreen = () => {
     <>
       <StatusBar />
       <View display='flex' flex={1} padding={16} pt={insets.top} bg={'$background'}>
+
         <View
           display='flex'
           justifyContent='space-between'
@@ -50,19 +50,22 @@ const DashboardHomeScreen = () => {
 
           <View display='flex' gap={20} flexDirection='row' alignItems='center'>
             <BellDot color={theme.red10Dark.val} />
-            <Link href={ROUTES.placeOrder.path} asChild>
+            <Link href={ROUTES.order.path} asChild>
               <Button>Order</Button>
             </Link>
           </View>
         </View>
 
+
         {
           showAlert && <CustomAlertCard
             title='Update'
+            bgColor='error'
             closeAction={() => setShowAlert(false)}
             message="placeat ullam similique eligendi deserunt soluta omnis sint modi est consectetur quibusdam quasi corporis, eius numquam eum? Ipsam, veniam perferendis."
           />
         }
+
 
         {/* History */}
         <View mt={24} py={16} borderRadius={8}>
@@ -72,7 +75,7 @@ const DashboardHomeScreen = () => {
           <FlatList
             data={orders ?? []}
             style={styles.flatList}
-            renderItem={({ item }) => <Card {...item} />}
+            renderItem={({ item }) => <HistoryItem order={item} status='pending' />}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
           />
         </View>
@@ -84,61 +87,9 @@ const DashboardHomeScreen = () => {
 export default DashboardHomeScreen;
 
 
-
-
 const styles = StyleSheet.create({
   flatList: {
     height: 'auto',
     paddingTop: 10,
   },
 });
-
-const Card = (props: order) => {
-  const theme = useTheme()
-  const handlePress = () => { };
-  return (
-    <TouchableHighlight
-      onPress={handlePress}
-      underlayColor={theme.accentBackground.val}
-      activeOpacity={0.8}
-      style={{ borderRadius: 8 }}
-    >
-      <View bg={'$color2'} px={16} py={10} borderRadius={8}>
-        <View
-          display='flex'
-          flexDirection='row'
-          alignItems='center'
-          gap={8}
-        >
-          <View
-            borderRadius={200}
-            minWidth={50}
-            minHeight={50}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            bg={'$color3'}
-          >
-            <View style={{ display: "flex", flexDirection: "row" }}>
-              <Text fontWeight={600} pb={2}>{props.quantity}</Text>
-              <Text fontWeight={600} pb={2}>
-                {/* {props.measurement === "crate" ? "c" : "p"} */}
-                c
-              </Text>
-            </View>
-          </View>
-          <View display='flex' >
-            <Text fontWeight={600} pb={2}>
-              {new Date(props.createdAt).toDateString()}
-            </Text>
-            <Text color={'$red9Dark'}>
-              {formatCurrency(props.totalCost)}
-            </Text>
-            {/* <Text >{props.measurement}</Text> */}
-            <Text >crate</Text>
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  );
-};

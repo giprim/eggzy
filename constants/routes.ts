@@ -4,7 +4,8 @@ const ROUTES = {
   dashboard: { name: '(dashboard)', path: '/(dashboard)/'},
   settings: {name: 'settings', path: '/settings'},
   messages: {name: 'messages', path: '/messages'},
-  placeOrder: {name: 'placeOrder', path: '/placeOrder/'}
+  order: {name: 'order', path: '/order/'},
+  details: {name: '[orderID]', path: (id:string) => `/order/${id}`}
 }
 
 export default ROUTES
