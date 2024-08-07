@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { useTheme, } from "tamagui";
-import { Home, MessageCircle, Settings } from 'lucide-react-native';
+import { Home, MessageCircle, Settings, ShoppingBasket } from 'lucide-react-native';
 import ROUTES from "../../constants/routes";
 
 
@@ -22,6 +22,13 @@ export default function TabLayout() {
           title: "Home",
           headerShown: false,
           tabBarIcon: ({ color }) => <Home color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name={ROUTES.vendors.name}
+        options={{
+          title: ROUTES.vendors.name,
+          tabBarIcon: ({ color }) => <ShoppingBasket color={color} />,
         }}
       />
       <Tabs.Screen

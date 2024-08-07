@@ -4,6 +4,7 @@ import { order } from "../context";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Link } from "expo-router";
 import ROUTES from "../constants/routes";
+import moment from "moment";
 
 type status = 'pending' | 'approved' | 'declined'
 
@@ -60,7 +61,7 @@ const HistoryItem = (props: Props) => {
             </View>
             <View display='flex' >
               <Text fontWeight={600} pb={2}>
-                {new Date(order.createdAt).toDateString()}
+                {moment(order.createdAt).fromNow().trim()}
               </Text>
               <Text color={'$red9Dark'}>
                 {formatCurrency(order.totalCost)}

@@ -1,5 +1,5 @@
 import { SplashScreen, Stack } from "expo-router";
-import { useColorScheme } from "react-native";
+import { Platform, useColorScheme } from "react-native";
 import { TamaguiProvider, Theme, useTheme } from "tamagui";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../tamagui-web.css";
@@ -9,6 +9,13 @@ import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import ROUTES from "../constants/routes";
 import ContextProvider from "../context";
+
+// if (Platform.OS === 'android') {
+require('@formatjs/intl-locale/polyfill')
+require('@formatjs/intl-relativetimeformat/polyfill')
+require('@formatjs/intl-relativetimeformat/locale-data/en') // locale-data for en
+// }
+
 
 export {
   // Catch any errors thrown by the Layout component.

@@ -2545,6 +2545,66 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/ecma402-abstract@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@formatjs/ecma402-abstract@npm:2.0.0"
+  dependencies:
+    "@formatjs/intl-localematcher": "npm:0.5.4"
+    tslib: "npm:^2.4.0"
+  checksum: 41543ba509ea3c7d6530d57b888115f7ca242f13462a951fae4d1d1f28bae10c999f4dea28a71d2f08366d4889a3f5276cae3a16c6f6417b841a84fd314c2234
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-enumerator@npm:1.4.7":
+  version: 1.4.7
+  resolution: "@formatjs/intl-enumerator@npm:1.4.7"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 14234c9de2a5143d4839a032e2a876b3acd75c6107868b4d771969354c359f4fa2256d9385ca8bec196273ea7b844d7f6d598ca0ca3832c06e14573494aaf561
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-getcanonicallocales@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@formatjs/intl-getcanonicallocales@npm:2.3.0"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: eea750091e62dbe2ed892f84204e4b814096c3524daf957f0b2dbd6634541a58c9b9eb353ca5a740fd8f7c635fb0c0b14118d46322a1fb7281ebe200f6e3604a
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-locale@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@formatjs/intl-locale@npm:4.0.0"
+  dependencies:
+    "@formatjs/ecma402-abstract": "npm:2.0.0"
+    "@formatjs/intl-enumerator": "npm:1.4.7"
+    "@formatjs/intl-getcanonicallocales": "npm:2.3.0"
+    tslib: "npm:^2.4.0"
+  checksum: 5c7ba139800498ca381ca7df708b18127a2bc9187e7d9fce8234426e2e1a8552a6cc44d370e3998afad46a43cd082ccc5a4b00ef738167552c1756f56e7dd4ca
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-localematcher@npm:0.5.4":
+  version: 0.5.4
+  resolution: "@formatjs/intl-localematcher@npm:0.5.4"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 780cb29b42e1ea87f2eb5db268577fcdc53da52d9f096871f3a1bb78603b4ba81d208ea0b0b9bc21548797c941ce435321f62d2522795b83b740f90b0ceb5778
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-relativetimeformat@npm:^11.2.14":
+  version: 11.2.14
+  resolution: "@formatjs/intl-relativetimeformat@npm:11.2.14"
+  dependencies:
+    "@formatjs/ecma402-abstract": "npm:2.0.0"
+    "@formatjs/intl-localematcher": "npm:0.5.4"
+    tslib: "npm:^2.4.0"
+  checksum: a61febd0262c803b568598f64f734a3f2e5f06934b52d19ebd5cc48b8ad0b8e282868fb28cbceff49e6494ad924d86e5af1714a108b16c945bad349453cd58b8
+  languageName: node
+  linkType: hard
+
 "@graphql-tools/executor@npm:^1.0.0":
   version: 1.2.8
   resolution: "@graphql-tools/executor@npm:1.2.8"
@@ -11958,6 +12018,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moment@npm:^2.30.1":
+  version: 2.30.1
+  resolution: "moment@npm:2.30.1"
+  checksum: ae42d876d4ec831ef66110bdc302c0657c664991e45cf2afffc4b0f6cd6d251dde11375c982a5c0564ccc0fa593fc564576ddceb8c8845e87c15f58aa6baca69
+  languageName: node
+  linkType: hard
+
 "moti@npm:^0.27.4":
   version: 0.27.5
   resolution: "moti@npm:0.27.5"
@@ -14925,6 +14992,8 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.24.0"
     "@expo/metro-runtime": "npm:~3.2.1"
+    "@formatjs/intl-locale": "npm:^4.0.0"
+    "@formatjs/intl-relativetimeformat": "npm:^11.2.14"
     "@react-navigation/native": "npm:^6.0.2"
     "@tamagui/cli": "npm:^1.102.3"
     "@tamagui/config": "npm:^1.94.5"
@@ -14943,6 +15012,7 @@ __metadata:
     expo-system-ui: "npm:~3.0.7"
     expo-web-browser: "npm:~13.0.3"
     lucide-react-native: "npm:^0.417.0"
+    moment: "npm:^2.30.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-helmet-async: "npm:~2.0.4"
