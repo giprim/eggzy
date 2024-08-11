@@ -4,7 +4,7 @@ import ROUTES from "../../constants/routes"
 const PlaceOrderLayout = () => {
   return <Stack>
     <Stack.Screen
-      name={ROUTES.order.name}
+      name={'newOrder'}
       options={{
         headerShown: false,
         title: 'Place Orders',

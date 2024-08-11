@@ -5,16 +5,12 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { Link } from "expo-router";
 import ROUTES from "../constants/routes";
 import moment from "moment";
+import { Status, TStatus } from "../constants/records";
 
-type status = 'pending' | 'approved' | 'declined'
 
-type Props = { order: order, status: status }
+type Props = { order: order, status: TStatus }
 
-const Status: Record<status, { light: string, dark: string }> = {
-  approved: { light: '$green6Light', dark: '$green9Dark' },
-  declined: { light: '$red6Light', dark: '$red9Dark' },
-  pending: { light: '$orange6Light', dark: '$orange9Dark' },
-}
+
 
 const HistoryItem = (props: Props) => {
   const { order, status } = props
@@ -60,14 +56,14 @@ const HistoryItem = (props: Props) => {
               </View>
             </View>
             <View display='flex' >
-              <Text fontWeight={600} pb={2}>
-                {moment(order.createdAt).fromNow().trim()}
+              <Text fontWeight={600} fontSize={12} pb={2}>
+                {moment(order.createdAt).fromNow(true)}
               </Text>
               <Text color={'$red9Dark'}>
                 {formatCurrency(order.totalCost)}
               </Text>
               {/* <Text >{order.measurement}</Text> */}
-              <Text >crate</Text>
+              <Text fontSize={10}>{order.quantity} crate{order.quantity > 1 ? 's' : ''}</Text>
             </View>
           </View>
 

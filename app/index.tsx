@@ -46,7 +46,7 @@ const Landing = () => {
         <View p="$4" maxWidth={500} w={"100%"} alignSelf="center">
           <Text fontSize={20} fontWeight={600} textAlign="center">Authentication</Text>
           <View pt='$3'>
-            <Button onPress={handleGoogleLogin} bg={'$backgroundHover'} color={'$red10Dark'} borderColor={'$red10Dark'} size={'$5'}>Continue with Google</Button>
+            <Button onPress={handleGoogleLogin} bg={'$red10Dark'} color={'$white1'} size={'$5'}>Continue with Google</Button>
           </View>
         </View>
       </View>

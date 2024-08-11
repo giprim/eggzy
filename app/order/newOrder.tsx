@@ -85,7 +85,9 @@ export default function ModalScreen() {
         }
       </View>
 
-      <Button bg={'$color7'} disabled={!isValid}
+      <Button
+        bg={'$color7'}
+        disabled={!isValid}
         disabledStyle={{ backgroundColor: theme.gray10Dark.val }}
         color={'$white1'} onPress={handleSubmit}>Place order</Button>
     </YStack>

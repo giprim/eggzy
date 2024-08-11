@@ -1,6 +1,6 @@
 import { SplashScreen, Stack } from "expo-router";
 import { Platform, useColorScheme } from "react-native";
-import { TamaguiProvider, Theme, useTheme } from "tamagui";
+import { TamaguiProvider, Theme } from "tamagui";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../tamagui-web.css";
 
@@ -51,9 +51,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const theme = useTheme()
   const colorScheme = useColorScheme();
-
   return (
     <ContextProvider>
       <TamaguiProvider config={config} >

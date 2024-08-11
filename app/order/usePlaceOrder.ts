@@ -61,6 +61,7 @@ export const usePlaceOrder = () => {
       quantity: quantity,
       totalCost: totalAmount,
       createdAt: new Date().toUTCString(),
+      pricePerCrate: pricePerCrate,
       id: uuidv4()
     })
 

@@ -1,6 +1,8 @@
 import { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from "react";
+import { TStatus } from "../constants/records";
 export type order = {
   id?: string;
+  vendorID?: string;
   quantity: number;
   isDelivery: boolean;
   deliveryFee: number;
@@ -8,6 +10,8 @@ export type order = {
   pickAddress: string;
   totalCost: number;
   createdAt: string,
+  pricePerCrate: number,
+  status?: TStatus
 }
 type contextProps = {
   order?: order,
@@ -31,7 +35,8 @@ const useApp = () => {
     deliveryAddress: '',
     pickAddress: '',
     totalCost: 0,
-    createdAt: ''
+    createdAt: '',
+    pricePerCrate: 0,
   })
   const [availableCrates, setAvailableCrates] = useState(28)
   const [orders, setOrders] = useState<order[]>([])
@@ -39,7 +44,7 @@ const useApp = () => {
   // Watches order for change and adds to orders array
   useMemo(() => {
     if (order.quantity >= 1)
-      setOrders(prev => [...prev, order])
+      setOrders(prev => [{ ...order, status: 'pending' }, ...prev])
   }, [order])
 
   return {

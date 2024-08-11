@@ -1,7 +1,8 @@
 import { X } from "lucide-react-native"
 import { useColorScheme } from "react-native"
 import { Button, Text, View } from "tamagui"
-type alertType = 'default' | 'info' | 'warning' | 'success' | 'error'
+import { alertType, AlertColor } from "../constants/records"
+
 type Props = {
   title: string,
   message: string,
@@ -9,13 +10,7 @@ type Props = {
   bgColor?: alertType
 }
 
-const AlertColor: Record<alertType, { dark: string, light: string }> = {
-  default: { dark: '$color6', light: '$color3' },
-  error: { dark: '$red9Dark', light: '$red6Light' },
-  info: { dark: '$blue9Dark', light: '$blue6Light' },
-  success: { dark: '$green9Dark', light: '$green6Light' },
-  warning: { dark: '$orange9Dark', light: '$orange6Light' }
-}
+
 
 const CustomAlertCard = (props: Props) => {
   const colorScheme = useColorScheme();
@@ -28,7 +23,7 @@ const CustomAlertCard = (props: Props) => {
         <Button onPress={closeAction} size={18} mt={-10} icon={<X />}></Button>
       </View>
 
-      <Text fontWeight={400} pt={4}>
+      <Text fontWeight={400} fontSize={18} pt={4}>
         {message}
       </Text>
     </View>
