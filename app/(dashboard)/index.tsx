@@ -66,7 +66,6 @@ const DashboardHomeScreen = () => {
           />
         }
 
-
         {/* History */}
         <View mt={24} py={16} borderRadius={8}>
           <Text pb='$3' >
