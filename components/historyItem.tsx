@@ -1,8 +1,8 @@
-import { TouchableHighlight, useColorScheme, } from "react-native";
+import { Pressable, useColorScheme, } from "react-native";
 import { useTheme, View, Text } from "tamagui";
 import { order } from "../context";
 import { formatCurrency } from "../utils/formatCurrency";
-import { Link } from "expo-router";
+import { Href, Link } from "expo-router";
 import ROUTES from "../constants/routes";
 import moment from "moment";
 import { Status, TStatus } from "../constants/records";
@@ -18,20 +18,17 @@ const HistoryItem = (props: Props) => {
   const theme = useTheme()
   const handlePress = () => { };
   return (
-    <Link asChild href={ROUTES.details.path(order.id!)}>
-      <TouchableHighlight
-        onPress={handlePress}
-        underlayColor={theme.accentBackground.val}
-        activeOpacity={0.8}
-        style={{ borderRadius: 8 }}
-      >
+    <Link asChild href={ROUTES.details.path(order.id!) as Href}>
+      <Pressable onPress={handlePress}>
         <View
           bg={'$color2'}
           display="flex"
           justifyContent="space-between"
           alignItems="center"
           flexDirection="row"
-          px={16} py={10} borderRadius={8}>
+          px={16}
+          py={10}
+          borderRadius={8}>
           <View
             display='flex'
             flexDirection='row'
@@ -49,10 +46,7 @@ const HistoryItem = (props: Props) => {
             >
               <View style={{ display: "flex", flexDirection: "row" }}>
                 <Text fontWeight={600} pb={2}>{order.quantity}</Text>
-                <Text fontWeight={600} pb={2}>
-                  {/* {order.measurement === "crate" ? "c" : "p"} */}
-                  c
-                </Text>
+                <Text fontWeight={600} pb={2}>c</Text>
               </View>
             </View>
             <View display='flex' >
@@ -62,7 +56,6 @@ const HistoryItem = (props: Props) => {
               <Text color={'$red9Dark'}>
                 {formatCurrency(order.totalCost)}
               </Text>
-              {/* <Text >{order.measurement}</Text> */}
               <Text fontSize={10}>{order.quantity} crate{order.quantity > 1 ? 's' : ''}</Text>
             </View>
           </View>
@@ -72,7 +65,7 @@ const HistoryItem = (props: Props) => {
           </View>
 
         </View>
-      </TouchableHighlight>
+      </Pressable>
     </Link>
   );
 };

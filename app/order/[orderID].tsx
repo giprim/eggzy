@@ -1,4 +1,4 @@
-import { Link, useLocalSearchParams } from 'expo-router';
+import { Href, Link, useLocalSearchParams } from 'expo-router';
 import { View, Text, XStack, YStack, Separator, Button, H6, Tabs } from 'tamagui';
 import { useAppContext } from '../../context';
 import { formatCurrency } from '../../utils/formatCurrency';
@@ -22,8 +22,7 @@ export default function DetailsScreen() {
   return (
     <SafeAreaProvider>
       <View bg={'$background'} h={'100%'} p={16}
-        pt={OS === 'android' ? 36 : 16}
-      >
+        pt={OS === 'android' ? 36 : 16}>
         <BackBtn />
         <XStack justifyContent='space-between' gap={16} py={16}>
           <XStack alignItems='center' gap={16} >
@@ -120,7 +119,7 @@ export default function DetailsScreen() {
           >
 
             <YStack gap={16}>
-              <Link href={ROUTES.vendors.path + '2'} asChild>
+              <Link href={ROUTES.vendors.path + '2' as Href} asChild>
                 <Button size={'$5'} bg={'$color3'}>View vendor</Button>
               </Link>
               <Button fontWeight={800} size={'$5'} bg={AlertColor.warning[colorScheme!]} >Pay {formatCurrency(value.totalCost)}</Button>

@@ -1,5 +1,5 @@
 import { Avatar, Button, Text, useTheme, View } from 'tamagui'
-import { Link } from "expo-router";
+import { Href, Link } from "expo-router";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -50,13 +50,11 @@ const DashboardHomeScreen = () => {
 
           <View display='flex' gap={20} flexDirection='row' alignItems='center'>
             <BellDot color={theme.red10Dark.val} />
-            <Link href={ROUTES.order.path} asChild>
+            <Link href={ROUTES.order.path as Href} asChild>
               <Button>Order</Button>
             </Link>
           </View>
         </View>
-
-
         {
           showAlert && <CustomAlertCard
             title='Update'
@@ -65,7 +63,6 @@ const DashboardHomeScreen = () => {
             message="placeat ullam similique eligendi deserunt soluta omnis sint modi est consectetur quibusdam quasi corporis, eius numquam eum? Ipsam, veniam perferendis."
           />
         }
-
         {/* History */}
         <View mt={24} py={16} borderRadius={8}>
           <Text pb='$3' >
@@ -73,7 +70,10 @@ const DashboardHomeScreen = () => {
           </Text>
           <FlatList
             data={orders ?? []}
-            style={styles.flatList}
+            style={{
+              height: 'auto',
+              paddingTop: 10,
+            }}
             renderItem={({ item }) => <HistoryItem order={item} status='pending' />}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
           />
